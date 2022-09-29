@@ -291,6 +291,7 @@ remove(Name, LabelValues) ->
 %% mismatch.
 %% @end
 remove(Registry, Name, LabelValues) ->
+  io:format("REMOVE HISTOGRAM: ~s \n\n ", [Name]),
   prometheus_metric:check_mf_exists(?TABLE, Registry, Name, LabelValues),
   case lists:flatten([ets:take(?TABLE,
                                {Registry, Name, LabelValues, Scheduler})

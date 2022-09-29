@@ -206,6 +206,7 @@ remove(Name, LabelValues) ->
 %% mismatch.
 %% @end
 remove(Registry, Name, LabelValues) ->
+  io:format("REMOVE BOOLEAN: ~s \n\n ", [Name]),
   prometheus_metric:remove_labels(?TABLE, Registry, Name, LabelValues).
 
 %% @equiv reset(default, Name, [])
