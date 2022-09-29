@@ -78,10 +78,13 @@ default_metrics() ->
   application:get_env(prometheus, default_metrics, []).
 
 maybe_create_table(Name, {Type, Concurrency}) ->
+  io:format("MAYBE CREATE TABLE: ~s \n ", [Name]),
   case ets:info(Name) of
     undefined ->
+      io:format("ACTUALLY CREATE TABLE: ~s \n ", [Name]),
       ets:new(Name, [Type, named_table, public, {Concurrency, true}]);
     _ ->
+      io:format("TABLE WAS PROBABLY ALREADY CREATED: ~s \n ", [Name]),
       ok
   end;
 maybe_create_table(Name, Concurrency) ->
