@@ -145,6 +145,7 @@ deregister(Name) ->
 %% Otherwise returns `{true, _}'.
 %% @end
 deregister(Registry, Name) ->
+  io:format("INSERT MF: ~s \n\n ", [Name]),
   MFR = prometheus_metric:deregister_mf(?TABLE, Registry, Name),
   NumDeleted = ets:select_delete(?TABLE, deregister_select(Registry, Name)),
   {MFR, NumDeleted > 0}.

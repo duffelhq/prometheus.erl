@@ -103,7 +103,7 @@ insert_new_mf(Table, Module, Spec) ->
 
 %% @private
 insert_mf(Table, Module, Spec) ->
-  io:format("INSERT MF: ~s \n\n ", [Spec]),
+  io:format("INSERT MF: ~p \n\n ", [Spec]),
   {Registry, Name, Labels, Help, CLabels, DurationUnit, Data} =
     prometheus_metric_spec:extract_common_params(Spec),
   prometheus_registry:register_collector(Registry, Module),
